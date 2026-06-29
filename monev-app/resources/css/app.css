@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html { font-family: 'DM Sans', sans-serif; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Plus Jakarta Sans', sans-serif; }
+}
+
+@layer components {
+    .chip {
+        @apply inline-flex items-center px-2.5 py-0.5 rounded font-medium tracking-wide uppercase;
+        font-size: 12px;
+    }
+    .chip-terdaftar  { @apply bg-blue-50   text-blue-700; }
+    .chip-berjalan   { @apply bg-green-50  text-green-700; }
+    .chip-laporan    { @apply bg-amber-50  text-amber-700; }
+    .chip-dinilai    { @apply bg-purple-50 text-purple-700; }
+    .chip-selesai    { @apply bg-emerald-50 text-emerald-700; }
+    .chip-dihentikan { @apply bg-red-50    text-red-700; }
+
+    .stat-card {
+        @apply bg-white border border-slate-200 rounded-[8px] p-4;
+    }
+    .data-table {
+        @apply w-full border-collapse;
+    }
+    .data-table th {
+        @apply text-left font-medium text-slate-500 pb-3 border-b border-slate-100;
+        font-size: 13px;
+    }
+    .data-table td {
+        @apply py-3 border-b border-slate-100 text-slate-800 align-middle;
+    }
+    .data-table tr:last-child td { @apply border-b-0; }
+
+    .nav-item {
+        @apply flex items-center gap-2.5 px-5 py-2.5 text-white/55 hover:bg-white/5 hover:text-white/85 transition-colors duration-150;
+        font-size: 15px;
+    }
+    .nav-item.active {
+        @apply bg-white/10 text-white border-r-2 border-sage;
+    }
+    .btn-primary {
+        @apply bg-navy text-white font-medium px-5 py-2.5 rounded hover:bg-navy-dark transition-colors;
+        font-size: 16px;
+    }
+    .btn-secondary {
+        @apply bg-transparent text-navy font-medium px-5 py-2.5 rounded border border-navy hover:bg-navy/5 transition-colors;
+        font-size: 16px;
+    }
+    .input-field {
+        @apply w-full border border-slate-200 rounded px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-navy/10 focus:border-navy transition;
+        font-size: 16px;
+    }
+}
