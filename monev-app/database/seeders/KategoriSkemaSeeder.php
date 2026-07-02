@@ -8,8 +8,17 @@ class KategoriSkemaSeeder extends Seeder
 {
     public function run(): void
     {
-        $penelitian = DB::table('kategori')->insertGetId(['nama' => 'Penelitian', 'kode' => 'PENELITIAN', 'created_at' => now(), 'updated_at' => now()]);
-        $pengmas    = DB::table('kategori')->insertGetId(['nama' => 'Pengabdian Masyarakat', 'kode' => 'PENGMAS', 'created_at' => now(), 'updated_at' => now()]);
+        DB::table('kategori')->updateOrInsert(
+            ['kode' => 'PENELITIAN'],
+            ['nama' => 'Penelitian', 'updated_at' => now(), 'created_at' => now()]
+        );
+        DB::table('kategori')->updateOrInsert(
+            ['kode' => 'PENGMAS'],
+            ['nama' => 'Pengabdian Masyarakat', 'updated_at' => now(), 'created_at' => now()]
+        );
+
+        $penelitian = DB::table('kategori')->where('kode', 'PENELITIAN')->value('id');
+        $pengmas    = DB::table('kategori')->where('kode', 'PENGMAS')->value('id');
 
         $skema = [
             [$penelitian, 'PD',  'Penelitian Dasar',        50000000],
@@ -21,7 +30,18 @@ class KategoriSkemaSeeder extends Seeder
         ];
 
         foreach ($skema as [$kat, $kode, $nama, $dana]) {
-            DB::table('skema')->insert(['kategori_id' => $kat, 'kode' => $kode, 'nama' => $nama, 'dana_maksimal' => $dana, 'durasi_bulan' => 12, 'aktif' => true, 'created_at' => now(), 'updated_at' => now()]);
+            DB::table('skema')->updateOrInsert(
+                ['kode' => $kode],
+                [
+                    'kategori_id' => $kat,
+                    'nama' => $nama,
+                    'dana_maksimal' => $dana,
+                    'durasi_bulan' => 12,
+                    'aktif' => true,
+                    'updated_at' => now(),
+                    'created_at' => now(),
+                ]
+            );
         }
     }
 }

@@ -17,17 +17,18 @@ class KriteriaPenilaianSeeder extends Seeder
         ];
 
         foreach ($kriteria as [$nama, $bobot, $urutan]) {
-            DB::table('kriteria_penilaian')->insert([
-                'scope'   => 'GLOBAL',
-                'nama'    => $nama,
-                'bobot'   => $bobot,
-                'skor_min' => 1,
-                'skor_max' => 100,
-                'urutan'  => $urutan,
-                'aktif'   => true,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
+            DB::table('kriteria_penilaian')->updateOrInsert(
+                ['scope' => 'GLOBAL', 'urutan' => $urutan],
+                [
+                    'nama' => $nama,
+                    'bobot' => $bobot,
+                    'skor_min' => 1,
+                    'skor_max' => 100,
+                    'aktif' => true,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]
+            );
         }
     }
 }
